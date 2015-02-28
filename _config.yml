@@ -1,0 +1,41 @@
+# GitHub Pages
+# None of these can actually be changed
+safe:     true
+lsi:      false
+highlighter: pygments
+
+# Formatting
+markdown: redcarpet
+redcarpet:
+  extensions: [
+    "autolink"
+  , "tables"
+  , "strikethrough"
+  , "with_toc_data"
+  , "fenced_code_blocks"
+  , "no_intra_emphasis"
+  ]
+
+# Permalinks
+permalink: pretty
+
+# File inclusion (these would otherwise be hidden)
+include: ["_assets", "_search.json"]
+
+exclude: [CNAME, Gemfile, Gemfile.lock, Makefile, README.md, LICENSE, vendor, robots_*, linklint]
+
+# Project specific
+# Remember to change these!
+baseurl:      /bm-doc-api-timecapacity
+title:        vaola - MWS-Client
+tagline:      The developer guides to MWS Client
+description:
+url:          http://some.url.com
+
+author:
+  name:       Thomas Wiener
+  url:        https://github.com/thomaswiener
+
+vaola:
+  url:        https://vaola.de
+  api:        https://api.whatever.com

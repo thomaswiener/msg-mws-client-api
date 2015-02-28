@@ -1,0 +1,18 @@
+# Vim
+*.swp
+
+# Gemfile
+.bundle/
+bin/
+/vendor/
+
+# Jekyll
+_site/
+
+# Sass
+.sass-cache
+
+# Linklint
+linklint/
+
+.idea/
