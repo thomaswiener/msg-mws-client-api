@@ -70,3 +70,28 @@ Status: 200 OK
   [HTTPS]: http://en.wikipedia.org/wiki/HTTP_Secure
   [login]: /api/login/
   [createuser]: /api/user/#toc_1
+
+
+
+
+
+
+
+### TODO
+
+* The followREQUIRED
+*
+* Access Key ID and Secret Acess Key ID, obtained from:
+* http://aws.amazon.com
+define('AWS_ACCESS_KEY_ID', '<Your Access Key ID>');
+define('AWS_SECRET_ACCESS_KEY', '<Your Secret Key>');
+* REQUIRED
+* All MWS requests must contain a User-Agent header. The application
+* name and version defined below are used in creating this value.
+define('APPLICATION_NAME', '<Your Application Name>');
+define('APPLICATION_VERSION', '<Your Application Version or Build Number>');
+* REQUIRED
+* All MWS requests must contain the seller's merchant ID and
+* marketplace ID.
+define ('MERCHANT_ID', '<Your Merchant Id>');
+define ('MARKETPLACE_ID', '<Your Marketplace Id>');

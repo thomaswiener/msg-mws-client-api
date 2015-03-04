@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- =============================================================== -->
+<!-- ParkU Ant Deploy File -->
+<!-- =============================================================== -->
+<project name="beachinspector" basedir="." default="default">
+
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath>
+            <pathelement location="./libs/ant-contrib-1.0b3.jar"/>
+        </classpath>
+    </taskdef>
+
+    <!-- =============================================================== -->
+    <!-- Default Config -->
+    <!-- =============================================================== -->
+
+    <property name="live-server-host"          value="wiener.io"/>
+    <property name="live-server-port"          value="22"/>
+    <property name="live-server-user"          value="www-data"/>
+
+    <property name="server-deploy-path"        value="/var/www/msg-api.wiener.io"/>
+
+    <!-- =============================================================== -->
+    <!-- Build tasks -->
+    <!-- =============================================================== -->
+
+    <target name="default" depends="">
+        <echo message="'ant build' build project locally" />
+        <echo message="'ant deploy:dev' build project locally and upload to dev" />
+        <echo message="'ant deploy:production' build project locally and upload to live" />
+    </target>
+
+    <target name="deploy"         depends="build, compact, upload, extract"/>
+
+    <!-- =============================================================== -->
+    <!-- Server configuration tasks -->
+    <!-- =============================================================== -->
+
+    <target name="deploy:production" depends="-production, deploy" />
+    <target name="-production">
+        <property name="server-host"     value="${live-server-host}"/>
+        <property name="server-port"     value="${live-server-port}"/>
+        <property name="server-user"     value="${live-server-user}"/>
+        <property name="server-password" value=""/>
+    </target>
+
+    <!-- =============================================================== -->
+    <!-- Properties tasks -->
+    <!-- =============================================================== -->
+
+    <target name="build">
+        <exec executable="jekyll" failonerror="true">
+            <arg value="build"/>
+        </exec>
+    </target>
+
+    <target name="compact">
+        <exec executable="tar" failonerror="true">
+            <arg value="czf"/>
+            <arg value="site.tar.gz"/>
+            <arg value="_site"/>
+        </exec>
+    </target>
+
+    <target name="upload">
+        <sshexec
+                host="${server-host}"
+                port="${server-port}"
+                username="${server-user}"
+                keyfile="${user.home}/.ssh/id_rsa"
+                trust="true"
+                command="mkdir -p ${server-deploy-path}"
+                failonerror="true"
+                verbose="false"
+                />
+        <exec executable="scp" failonerror="true">
+            <arg value="-P${server-port}"/>
+            <arg value="site.tar.gz"/>
+            <arg value="${server-user}@${server-host}:${server-deploy-path}/site.tar.gz"/>
+        </exec>
+    </target>
+
+    <target name="extract">
+        <exec executable="scp" failonerror="true">
+            <arg value="-P${server-port}"/>
+            <arg value="site.tar.gz"/>
+            <arg value="${server-user}@${server-host}:${server-deploy-path}/site.tar.gz"/>
+        </exec>
+        <sshexec
+                host="${server-host}"
+                port="${server-port}"
+                username="${server-user}"
+                keyfile="${user.home}/.ssh/id_rsa"
+                trust="true"
+                command="cd ${server-deploy-path} &amp;&amp; rm -rf _site &amp;&amp; tar xzf site.tar.gz &amp;&amp; rm -f site.tar.gz"
+                failonerror="true"
+                verbose="false"
+                />
+    </target>
+
+</project>

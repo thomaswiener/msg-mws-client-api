@@ -22,11 +22,11 @@ permalink: pretty
 # File inclusion (these would otherwise be hidden)
 include: ["_assets", "_search.json"]
 
-exclude: [CNAME, Gemfile, Gemfile.lock, Makefile, README.md, LICENSE, vendor, robots_*, linklint]
+exclude: [CNAME, Gemfile, Gemfile.lock, Makefile, README.md, LICENSE, vendor, robots_*, linklint, build.xml, site.tar.gz]
 
 # Project specific
 # Remember to change these!
-baseurl:      /bm-doc-api-timecapacity
+baseurl:
 title:        vaola - MWS-Client
 tagline:      The developer guides to MWS Client
 description:
