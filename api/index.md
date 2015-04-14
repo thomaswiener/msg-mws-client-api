@@ -20,12 +20,14 @@ Status: 422 Unprocessable Entity
 
 ```json
 {
-  "errors": [
-    {
-      "field": "email",
-      "message": "The email "xxx" is not a valid E-Mail."
-    }
-  ]
+  "errors": {
+    "0": "This form should not contain extra fields.",
+    "ExtraFields": {
+      "SomeIdNotDefined": "lol"
+    },
+    "Country": "This value should not be blank.",
+    "Quantity": "This value should be a valid number."
+  }
 }
 ```
 
@@ -58,8 +60,9 @@ Status: 200 OK
 ```
 ```json
 {
-  "matrix_url": "{{ site.vaola.api }}/matrix",
-  "slot_url": "{{ site.vaola.api }}/slot",
+  "product_url": "{{ site.vaola.api }}/product",
+  "order_url": "{{ site.vaola.api }}/order",
+  "report_url": "{{ site.vaola.api }}/report",
 }
 ```
 
@@ -71,27 +74,3 @@ Status: 200 OK
   [login]: /api/login/
   [createuser]: /api/user/#toc_1
 
-
-
-
-
-
-
-### TODO
-
-* The followREQUIRED
-*
-* Access Key ID and Secret Acess Key ID, obtained from:
-* http://aws.amazon.com
-define('AWS_ACCESS_KEY_ID', '<Your Access Key ID>');
-define('AWS_SECRET_ACCESS_KEY', '<Your Secret Key>');
-* REQUIRED
-* All MWS requests must contain a User-Agent header. The application
-* name and version defined below are used in creating this value.
-define('APPLICATION_NAME', '<Your Application Name>');
-define('APPLICATION_VERSION', '<Your Application Version or Build Number>');
-* REQUIRED
-* All MWS requests must contain the seller's merchant ID and
-* marketplace ID.
-define ('MERCHANT_ID', '<Your Merchant Id>');
-define ('MARKETPLACE_ID', '<Your Marketplace Id>');

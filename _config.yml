@@ -27,15 +27,16 @@ exclude: [CNAME, Gemfile, Gemfile.lock, Makefile, README.md, LICENSE, vendor, ro
 # Project specific
 # Remember to change these!
 baseurl:
-title:        vaola - MWS-Client
-tagline:      The developer guides to MWS Client
+title:              vaola - MWS-Client
+tagline:            The developer guides to MWS Client
 description:
-url:          http://some.url.com
+url:                http://some.url.com
 
 author:
   name:       Thomas Wiener
   url:        https://github.com/thomaswiener
 
 vaola:
-  url:        https://vaola.de
-  api:        https://api.whatever.com
+  url:                https://vaola.de
+  api:                https://api.whatever.com/v1
+  countries_allowed:  de
